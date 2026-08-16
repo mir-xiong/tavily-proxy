@@ -1,0 +1,20 @@
+name = "tavily-proxy"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# For production, set AUTH_KEY as a secret:
+#   npx wrangler secret put AUTH_KEY
+# For local dev, set it in .dev.vars (see below)
+
+# Background /usage sync via cron. NOTE: cron triggers do NOT fire on the
+# Workers Free plan. On Free, usage stays fresh through the lazy sync in
+# GET /api/keys and the admin panel's "Sync usage now" (POST /api/keys/sync).
+# Uncomment when running on a paid plan:
+# [triggers]
+# crons = ["*/30 * * * *"]
+
+[observability]
+[observability.logs]
+enabled = true
+invocation_logs = true
